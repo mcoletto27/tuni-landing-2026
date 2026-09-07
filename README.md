@@ -5,6 +5,8 @@ documento de especificación para quien la va a programar.
 
 **➡️ [docs/ESPECIFICACION.md](docs/ESPECIFICACION.md) — empezá por acá.**
 
+**🔗 Prototipo online: https://mcoletto-creator.github.io/tuni-landing-2026/**
+
 ---
 
 ## Qué es esto
@@ -14,7 +16,11 @@ y este repo **no** tiene su código fuente. Lo que hay acá es un prototipo est�
 autocontenido, que implementa todos los cambios pedidos: sirve como referencia visual y de
 comportamiento para portarlos al proyecto real.
 
-## Correrlo
+## Verlo
+
+En vivo: **https://mcoletto-creator.github.io/tuni-landing-2026/** (se publica solo con cada push a `main`).
+
+En local:
 
 ```bash
 python3 -m http.server 4321
