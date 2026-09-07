@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tuni · Clases particulares de alumnos para alumnos</title>
+<meta name="description" content="Clases virtuales en vivo de 1 hora y media. Aprendé gracias a alumnos más avanzados de tu misma carrera y universidad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- =========================================================
+     LOADER + REVEAL  (pre-page)
+     ========================================================= -->
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando Tuni">
+  <div>
+    <div class="loader__mark">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z" stroke="#1A78F2" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="m3 7 9 4.5L21 7M12 11.5V21" stroke="#1A78F2" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+      <span style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:var(--tuni-blue)">Tuni</span>
+    </div>
+    <div class="loader__bar" aria-hidden="true"></div>
+  </div>
+</div>
+
+<!-- =========================================================
+     HEADER / NAVEGACIÓN
+     ========================================================= -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="logo" href="#inicio" aria-label="Tuni, ir al inicio">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="m3 7 9 4.5L21 7M12 11.5V21" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      </svg>
+      Tuni
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#modalidades">Reservar mi clase</a></li>
+        <li><a class="nav__link" href="#combinador">Combinador de horarios</a></li>
+        <li><a class="nav__link" href="#dashboard">Dashboard</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--ghost" href="#ser-profesor">Quiero ser profesor</a>
+
+      <!-- Perfil: avatar + etiqueta "Mi perfil", no un círculo sin contexto -->
+      <button class="profile" type="button" aria-haspopup="menu" aria-expanded="false">
+        <span class="profile__avatar" aria-hidden="true"></span>
+        <span class="profile__label">Mi perfil</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Abrir menú">
+        <span class="burger__bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Menú mobile -->
+<div class="drawer" id="drawer" hidden>
+  <a class="nav__link" href="#modalidades">Reservar mi clase</a>
+  <a class="nav__link" href="#combinador">Combinador de horarios</a>
+  <a class="nav__link" href="#dashboard">Dashboard</a>
+  <a class="nav__link" href="#perfil">Mi perfil</a>
+  <div class="drawer__cta">
+    <a class="btn btn--ghost btn--block" href="#ser-profesor">Quiero ser profesor</a>
+    <a class="btn btn--block" href="#buscador">Reservar mi clase</a>
+  </div>
+</div>
+
+<main id="inicio">
+
+  <!-- =========================================================
+       HERO + BUSCADOR
+       ========================================================= -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">Clases particulares<br>de <span class="accent">alumnos para alumnos</span></h1>
+      <p class="hero__lead">Clases virtuales en vivo de 1 hora y media. Aprendé gracias a alumnos más avanzados de tu misma carrera y universidad.</p>
+
+      <form class="searchbar" id="buscador" action="#" novalidate>
+        <div class="searchbar__field">
+          <label class="searchbar__label" for="f-uni">Universidad</label>
+          <select id="f-uni" name="universidad">
+            <option value="">Elegí tu universidad</option>
+            <option>Universidad de San Andrés</option>
+            <option>Universidad Torcuato Di Tella</option>
+            <option>Universidad de Palermo</option>
+            <option>UCEMA</option>
+            <option>UADE</option>
+          </select>
+        </div>
+        <div class="searchbar__field">
+          <label class="searchbar__label" for="f-carrera">Carrera</label>
+          <select id="f-carrera" name="carrera">
+            <option value="">Elegí tu carrera</option>
+            <option>Economía</option>
+            <option>Administración de Empresas</option>
+            <option>Ingeniería</option>
+            <option>Abogacía</option>
+          </select>
+        </div>
+        <div class="searchbar__field">
+          <label class="searchbar__label" for="f-materia">Materia</label>
+          <select id="f-materia" name="materia">
+            <option value="">Elegí tu materia</option>
+            <option>Análisis Matemático</option>
+            <option>Álgebra</option>
+            <option>Microeconomía</option>
+            <option>Contabilidad</option>
+          </select>
+        </div>
+        <button class="btn btn--lg searchbar__submit" type="submit">
+          Reservar
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       UNIVERSIDADES
+       ========================================================= -->
+  <section class="strip">
+    <p class="strip__title">Estamos presentes en las mejores universidades</p>
+    <div class="marquee" aria-label="Universidades donde está presente Tuni">
+      <div class="marquee__track" data-marquee>
+        <span class="marquee__item">Universidad de San Andrés</span>
+        <span class="marquee__item">Di Tella</span>
+        <span class="marquee__item">Universidad de Palermo</span>
+        <span class="marquee__item">UCEMA</span>
+        <span class="marquee__item">UADE</span>
+        <span class="marquee__item">UBA</span>
+        <span class="marquee__item">ITBA</span>
+        <span class="marquee__item">Austral</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       DATOS CLAROS
+       ========================================================= -->
+  <section class="section stats reveal">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#4C9AFF">Datos claros</span>
+        <h2>Tuni en números</h2>
+      </div>
+      <div class="stats__grid">
+        <div class="stat">
+          <div class="stat__num">+2.000</div>
+          <div class="stat__label">Alumnos satisfechos</div>
+          <p class="stat__desc">Acompañados con éxito en sus materias</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">+200</div>
+          <div class="stat__label">Materias disponibles</div>
+          <p class="stat__desc">De todas las carreras y universidades</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">+3</div>
+          <div class="stat__label">Años de experiencia</div>
+          <p class="stat__desc">Liderando la tutoría entre pares universitaria</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">$</div>
+          <div class="stat__label">Tarifas fijas</div>
+          <p class="stat__desc">Reguladas por la plataforma para asegurar accesibilidad y calidad</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MODALIDADES DE CLASE
+       ========================================================= -->
+  <section class="section reveal" id="modalidades">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">¿Qué modalidad de clase estás buscando hoy?</span>
+        <h2>¿Qué modalidad de clase estás buscando hoy?</h2>
+        <p>Tocá las pestañas para explorar los beneficios, precios y el badge característico de cada una.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Modalidades de clase">
+        <button class="tab" role="tab" id="tab-individual" aria-controls="panel-individual" aria-selected="true" type="button">
+          <span class="tab__top">
+            <span class="badge badge--blue">La más elegida</span>
+            <svg class="tab__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <p class="tab__name">Individual</p>
+          <p class="tab__desc">Foco absoluto y ritmo 100% personalizado.</p>
+        </button>
+
+        <button class="tab" role="tab" id="tab-grupal" aria-controls="panel-grupal" aria-selected="false" type="button">
+          <span class="tab__top">
+            <span class="badge badge--violet">Ahorro activo grupal</span>
+            <svg class="tab__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 20v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1M9.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM21 20v-1a4 4 0 0 0-3-3.87M16.5 4.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <p class="tab__name">Grupal (2-3 personas)</p>
+          <p class="tab__desc">Estudiá con tus amigos de cursada y pagá menos.</p>
+        </button>
+
+        <button class="tab" role="tab" id="tab-talleres" aria-controls="panel-talleres" aria-selected="false" type="button">
+          <span class="tab__top">
+            <span class="badge badge--green">Calidad / precio</span>
+            <svg class="tab__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H19v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 4v16" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <p class="tab__name">Talleres troncales</p>
+          <p class="tab__desc">Clases semanales para llevar la materia al día.</p>
+        </button>
+      </div>
+
+      <!-- Panel: Individual -->
+      <div class="panel is-active" id="panel-individual" role="tabpanel" aria-labelledby="tab-individual">
+        <div class="panel__card">
+          <div>
+            <div class="panel__meta">
+              <span class="badge badge--blue">Individual</span>
+              <span class="panel__duration"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Duración: 1 hora y media (90 min)</span>
+            </div>
+            <h3 style="font-size:var(--fs-h2);font-weight:700">Clase particular individual</h3>
+            <p class="panel__intro">La opción definitiva para resolver tus dudas específicas de manera veloz. Un profesor exclusivo para vos que conoce tu universidad y programa analítico.</p>
+            <ul class="checklist">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Foco absoluto en tus dudas: mano a mano con un profesor que ya cursó y aprobó la materia.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Vos elegís los temas a ver en la clase. Ritmo altamente personalizado.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Contacto directo vía WhatsApp con el profesor para consultas.</span></li>
+            </ul>
+            <p class="panel__note"><span><b>Común a las tres modalidades:</b> incluye grabación en video de la clase y material de estudio PDF para repasar cuando quieras.</span></p>
+          </div>
+          <aside class="panel__aside">
+            <span class="panel__aside-eyebrow">Reserva asegurada</span>
+            <div class="panel__aside-big">90 mins</div>
+            <p class="panel__aside-sub">de puro aprendizaje enfocado</p>
+            <a class="btn btn--lg btn--block" href="#buscador">Reservar clase</a>
+            <p class="panel__aside-foot">Sujeto a disponibilidad de profesores por materia</p>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Panel: Grupal -->
+      <div class="panel" id="panel-grupal" role="tabpanel" aria-labelledby="tab-grupal" hidden>
+        <div class="panel__card">
+          <div>
+            <div class="panel__meta">
+              <span class="badge badge--violet">Grupal (2-3 amigos)</span>
+              <span class="panel__duration"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Duración: 1 hora y media (90 min)</span>
+            </div>
+            <h3 style="font-size:var(--fs-h2);font-weight:700">Clases para vos y tus amigos</h3>
+            <p class="panel__intro">Reservá con 2 o 3 amigos y cada uno paga menos. Cuanto más son, más ahorran.</p>
+            <ul class="checklist">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Compartí un espacio de consultas grupales. Ideal para trabajos prácticos (TPs) o preparación en equipo.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todos eligen los temas a ver en la clase. Ritmo personalizado.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grupo de estudio en WhatsApp con tus amigos y el profesor.</span></li>
+            </ul>
+            <p class="panel__note"><span><b>Común a las tres modalidades:</b> incluye grabación en video de la clase y material de estudio PDF para repasar cuando quieras.</span></p>
+          </div>
+          <aside class="panel__aside">
+            <span class="panel__aside-eyebrow">Ahorro activo</span>
+            <div class="panel__aside-big">2-3<br>alumnos</div>
+            <p class="panel__aside-sub">Dividí costos equitativamente</p>
+            <a class="btn btn--lg btn--block" href="#buscador">Reservar en grupo</a>
+            <p class="panel__aside-foot">Perfecto para preparar finales en conjunto</p>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Panel: Talleres -->
+      <div class="panel" id="panel-talleres" role="tabpanel" aria-labelledby="tab-talleres" hidden>
+        <div class="panel__card">
+          <div>
+            <div class="panel__meta">
+              <span class="badge badge--green">Talleres de seguimiento</span>
+              <span class="panel__duration"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Duración: 1 hora y media semanal</span>
+            </div>
+            <h3 style="font-size:var(--fs-h2);font-weight:700">Clases grupales semanales</h3>
+            <p class="panel__intro">Clases grupales de 5 a 25 personas de materias troncales de tu carrera.</p>
+            <ul class="checklist">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ideal para llevar la materia al día con otros compañeros, al precio más accesible posible.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Los temas los elige el profesor, semana a semana. Ritmo más intenso.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grupo de estudio en WhatsApp con tus compañeros y el profesor.</span></li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Resolución de ejercicios, guías y exámenes de años anteriores.</span></li>
+            </ul>
+            <p class="panel__note"><span><b>Común a las tres modalidades:</b> incluye grabación en video de la clase y material de estudio PDF para repasar cuando quieras.</span></p>
+          </div>
+          <aside class="panel__aside">
+            <span class="panel__aside-eyebrow">Máximo valor</span>
+            <div class="panel__aside-big">5-25<br>alumnos</div>
+            <p class="panel__aside-sub">La opción más económica</p>
+            <a class="btn btn--lg btn--green btn--block" href="#buscador">Consultar talleres (WhatsApp)</a>
+            <p class="panel__aside-foot">Cupos limitados por cuatrimestre</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PACKS DE CLASES  (sección OPTATIVA — ver documento)
+       ========================================================= -->
+  <section class="section section--tint reveal" id="packs" data-optional="true">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Servicio de acompañamiento</span>
+        <h2>Packs de clases hasta tu parcial o final</h2>
+        <p>Elegí con qué frecuencia querés estudiar y asegurate el mismo profesor durante todo el tramo.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card pack">
+          <div class="pack__freq">1<span>clase semanal</span></div>
+          <h3 class="pack__title">Ritmo constante</h3>
+          <p class="pack__desc">Un encuentro por semana hasta el parcial o final para no perder el hilo de la materia.</p>
+          <ul class="checklist">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mismo profesor todo el pack</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Horario fijo reservado</span></li>
+          </ul>
+          <a class="btn btn--ghost btn--block" href="#buscador">Quiero este pack</a>
+        </article>
+
+        <article class="card pack pack--featured">
+          <span class="badge badge--blue pack__flag">Más elegido</span>
+          <div class="pack__freq">2<span>clases semanales</span></div>
+          <h3 class="pack__title">Preparación intensiva</h3>
+          <p class="pack__desc">Dos encuentros por semana hasta el parcial o final. El equilibrio entre ritmo y profundidad.</p>
+          <ul class="checklist">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mismo profesor todo el pack</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Plan de estudio armado con vos</span></li>
+          </ul>
+          <a class="btn btn--block" href="#buscador">Quiero este pack</a>
+        </article>
+
+        <article class="card pack">
+          <div class="pack__freq">4<span>clases semanales</span></div>
+          <h3 class="pack__title">Acompañamiento total</h3>
+          <p class="pack__desc">Cuatro encuentros por semana hasta el parcial o final. Para materias que no dan tregua.</p>
+          <ul class="checklist">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Mismo profesor todo el pack</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Seguimiento entre clases por WhatsApp</span></li>
+          </ul>
+          <a class="btn btn--ghost btn--block" href="#buscador">Quiero este pack</a>
+        </article>
+      </div>
+
+      <p class="pack__foot">(*) Los packs se abonan al contado. · (*) Disponibles para materias core en esta primera etapa.</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PAIN POINTS
+       ========================================================= -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-head"><h2>¿Te sentís identificado?</h2></div>
+      <div class="bubbles">
+        <p class="bubble bubble--left">“Rindo en pocos días y necesito repasar lo que de verdad van a tomar”</p>
+        <p class="bubble bubble--right">“Tengo miedo de desaprobar la materia”</p>
+        <p class="bubble bubble--left">“Tengo miedo de no entender y recursar la materia”</p>
+        <p class="bubble bubble--right">“Este tema no lo entiendo y necesito ayuda específica de alguien que haya estado en mi misma situación”</p>
+        <p class="bubble bubble--left">“Estoy quemando pestañas con teoría abstracta y me falta práctica real”</p>
+        <p class="bubble bubble--right">“No quiero atrasarme con la carrera y perder tiempo”</p>
+        <p class="bubble bubble--left">“Quiero estar al día con la materia y llegar bien para el examen”</p>
+        <p class="bubble bubble--right">“Quiero promocionar la materia para mantener o subir mi promedio”</p>
+      </div>
+
+      <div class="closing">
+        <h2>Aprobá esa materia difícil y disfrutá de tu tiempo libre, sin estrés.</h2>
+        <p>Ya sea para arrancar de cero o para resolver tus dudas, una clase con Tuni te devuelve el control y la confianza para un cuatrimestre sin frustraciones innecesarias.</p>
+        <a class="btn btn--lg" href="#buscador">Reservar mi clase particular</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       POR QUÉ ELEGIRNOS
+       ========================================================= -->
+  <section class="section section--tint reveal">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Nuestra promesa de excelencia</span>
+        <h2>¿Por qué elegirnos?</h2>
+        <p>Transparencia, respaldo y excelencia académica pensados para que estudies con total tranquilidad.</p>
+      </div>
+      <div class="grid grid--5">
+        <article class="card reason">
+          <div class="reason__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4 6v6c0 4.4 3.4 8.3 8 9 4.6-.7 8-4.6 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Garantía de devolución</h3>
+          <p>Si tu primer clase no te convence, te reintegramos el total del importe.</p>
+        </article>
+        <article class="card reason">
+          <div class="reason__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 1 1 2.5 5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 7v5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Reprogramá sin costo</h3>
+          <p>Modificá el horario de tu clase sin penalidades avisando como mínimo 24 h antes. (*) Sujeto a políticas de reprogramación.</p>
+        </article>
+        <article class="card reason">
+          <div class="reason__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="9" r="5" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 13.5-1 7 4.5-2.5 4.5 2.5-1-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3>Profesores verificados</h3>
+          <p>Estudiantes con promedio 9 o 10, con herramientas pedagógicas para acompañarte en tu materia.</p>
+        </article>
+        <article class="card reason">
+          <div class="reason__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.7"/></svg></div>
+          <h3>Pago seguro y garantizado</h3>
+          <p>Utilizamos MercadoPago para tu tranquilidad.</p>
+        </article>
+        <article class="card reason">
+          <div class="reason__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 9.7l5.4-.8L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3>Calidad asegurada</h3>
+          <p>Cada clase se evalúa internamente para sostener el nivel académico que prometemos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EQUIPO DE PROFESORES
+       ========================================================= -->
+  <section class="section reveal" id="profesores">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Nuestro equipo</span>
+        <h2>Alumnos avanzados de tu misma carrera y universidad</h2>
+      </div>
+      <div class="teachers">
+        <!-- data-active="false" → el profesor no se renderiza (ver documento) -->
+        <article class="card teacher" data-active="true">
+          <img class="teacher__photo" src="assets/img/profesor-placeholder.svg" alt="" width="88" height="88">
+          <p class="teacher__name">Julián M.</p>
+          <p class="teacher__uni"><span class="badge badge--uni">Universidad de San Andrés</span></p>
+          <p class="teacher__career">Lic. en Economía · 4to año</p>
+          <p class="teacher__score"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z"/></svg>10<span class="sr-only"> sobre 10</span></p>
+        </article>
+        <article class="card teacher" data-active="true">
+          <img class="teacher__photo" src="assets/img/profesor-placeholder.svg" alt="" width="88" height="88">
+          <p class="teacher__name">Delfina R.</p>
+          <p class="teacher__uni"><span class="badge badge--uni">Universidad Torcuato Di Tella</span></p>
+          <p class="teacher__career">Lic. en Administración · 5to año</p>
+          <p class="teacher__score"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z"/></svg>10<span class="sr-only"> sobre 10</span></p>
+        </article>
+        <article class="card teacher" data-active="true">
+          <img class="teacher__photo" src="assets/img/profesor-placeholder.svg" alt="" width="88" height="88">
+          <p class="teacher__name">Tomás B.</p>
+          <p class="teacher__uni"><span class="badge badge--uni">UCEMA</span></p>
+          <p class="teacher__career">Ingeniería en Informática · 4to año</p>
+          <p class="teacher__score"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z"/></svg>10<span class="sr-only"> sobre 10</span></p>
+        </article>
+        <article class="card teacher" data-active="true">
+          <img class="teacher__photo" src="assets/img/profesor-placeholder.svg" alt="" width="88" height="88">
+          <p class="teacher__name">Camila S.</p>
+          <p class="teacher__uni"><span class="badge badge--uni">Universidad de Palermo</span></p>
+          <p class="teacher__career">Contador Público · 5to año</p>
+          <p class="teacher__score"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z"/></svg>10<span class="sr-only"> sobre 10</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       QUIERO SER PROFESOR
+       ========================================================= -->
+  <section class="section teach reveal" id="ser-profesor">
+    <div class="container">
+      <div class="section-head">
+        <h2>Quiero ser profesor en Tuni</h2>
+        <p>¿Sos estudiante universitario, tenés buenas notas en tu carrera y te apasiona enseñar?</p>
+      </div>
+      <ul class="teach__list">
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#E8F1FE"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="#1A78F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Rentabilizar tu conocimiento con ingresos adicionales desde donde estés. A tu ritmo y online.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#E8F1FE"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="#1A78F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Flexibilidad y comodidad para definir tus horarios como profesor.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#E8F1FE"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="#1A78F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ser parte de una comunidad de +50 profesores de todas las carreras (y seguimos creciendo).</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#E8F1FE"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="#1A78F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Impactar positivamente en la educación de otros estudiantes dentro de tu universidad.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#E8F1FE"/><path d="m8 12.5 2.5 2.5L16 9.5" stroke="#1A78F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Desarrollar tus habilidades de teaching, comunicación, organización, etc.</span></li>
+      </ul>
+      <div class="teach__cta"><a class="btn btn--lg" href="#postularme">Postularme</a></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EN LOS MEDIOS  (sección nueva)
+       ========================================================= -->
+  <section class="section reveal" id="medios">
+    <div class="container">
+      <div class="section-head" style="text-align:left;max-width:none;margin-bottom:32px">
+        <h2 style="margin:0"><span style="color:var(--tuni-blue)">Tuni</span> en los medios</h2>
+      </div>
+
+      <div class="media">
+        <div class="media__feature">
+          <p class="media__outlet">ámbito</p>
+          <blockquote class="media__quote"><span class="mark">“</span>Una startup que busca acercar la tutoría entre pares a cada universidad.<span class="mark">”</span></blockquote>
+          <div class="media__meta">
+            <a class="media__link" href="#nota">Leer nota completa <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <span>|</span>
+            <time datetime="2026-06-17">17 jun 2026</time>
+          </div>
+        </div>
+
+        <ul class="media__list">
+          <li class="media__item">
+            <div>
+              <p class="media__item-outlet">El Cronista</p>
+              <p class="media__item-title">Título de la nota — reemplazar con el titular real.</p>
+            </div>
+            <a class="media__link" href="#nota">Leer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </li>
+          <li class="media__item">
+            <div>
+              <p class="media__item-outlet">iProfesional</p>
+              <p class="media__item-title">Título de la nota — reemplazar con el titular real.</p>
+            </div>
+            <a class="media__link" href="#nota">Leer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </li>
+          <li class="media__item">
+            <div>
+              <p class="media__item-outlet">Infobae</p>
+              <p class="media__item-title">Título de la nota — reemplazar con el titular real.</p>
+            </div>
+            <a class="media__link" href="#nota">Leer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </li>
+          <li class="media__item">
+            <div>
+              <p class="media__item-outlet">La Nación</p>
+              <p class="media__item-title">Título de la nota — reemplazar con el titular real.</p>
+            </div>
+            <a class="media__link" href="#nota">Leer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ORGANIZACIONES
+       ========================================================= -->
+  <section class="section section--tint reveal" id="organizaciones">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Organizaciones que impulsan nuestro crecimiento</span>
+        <h2>Educación validada por organizaciones líderes</h2>
+      </div>
+    </div>
+    <div class="marquee" aria-label="Organizaciones que respaldan a Tuni">
+      <div class="marquee__track" data-marquee>
+        <span class="marquee__item">Harvard Aspire Institute</span>
+        <span class="marquee__item">Ingreso Ingeniería UdeSA</span>
+        <span class="marquee__item">Sparklab UdeSA</span>
+        <span class="marquee__item">Centro de Entrepreneurship UdeSA</span>
+        <span class="marquee__item">Desarrollo Profesional UdeSA</span>
+        <span class="marquee__item">Desarrollo Profesional UCEMA</span>
+        <span class="marquee__item">Club de Emprendedores UdeSA</span>
+        <span class="marquee__item">Club de Finanzas UdeSA</span>
+        <span class="marquee__item">Politeia UdeSA</span>
+        <span class="marquee__item">XPLORA UCEMA</span>
+        <span class="marquee__item">Di Tella Finance Club</span>
+        <span class="marquee__item">Club de Neurociencias UTDT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FAQs
+       ========================================================= -->
+  <section class="section reveal" id="faqs">
+    <div class="container">
+      <div class="section-head"><h2>Preguntas frecuentes</h2></div>
+      <div class="faq">
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a1">¿Las clases son online o presenciales?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a1"><p>Todas las clases son virtuales y en vivo, de 1 hora y media, con grabación en video para que las repases cuando quieras.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a2">¿Qué medios de pago aceptan?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a2"><p>Trabajamos con MercadoPago: tarjeta de débito, crédito y dinero en cuenta.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a3">¿Voy a recibir una confirmación de mi reserva?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a3"><p>Sí. Apenas confirmás la reserva te llega un mail con el detalle y el link de la clase, y el profesor te escribe por WhatsApp.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a4">¿Cuál es la política de cancelación de clases?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a4"><p>Podés reprogramar sin costo avisando con un mínimo de 24 horas de anticipación.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a5">¿Hay garantía de devolución?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a5"><p>Sí: si tu primera clase no te convence, te reintegramos el total del importe.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a6">¿Cómo puedo ponerme en contacto con atención al cliente?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a6"><p>Escribinos por WhatsApp o a nuestro mail de soporte y te respondemos dentro de las 24 horas hábiles.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a7">No encuentro un horario que me sirva para la materia que busco, ¿me pueden ayudar igual?
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__a" id="a7"><p>Sí. Escribinos y buscamos un profesor con disponibilidad para tu materia y horario.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="#inicio">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2.5 21 7v10l-9 4.5L3 17V7l9-4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="m3 7 9 4.5L21 7M12 11.5V21" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          Tuni
+        </a>
+        <p style="max-width:36ch">Transformando la educación universitaria a través de tutorías entre pares.</p>
+      </div>
+      <div>
+        <h4>Explorar</h4>
+        <ul>
+          <li><a href="#buscador">Reservar mi clase</a></li>
+          <li><a href="#combinador">Combinador de horarios</a></li>
+          <li><a href="#ser-profesor">Ser profesor en Tuni</a></li>
+          <li><a href="#faqs">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legales</h4>
+        <ul>
+          <li><a href="#terminos">Términos del servicio</a></li>
+          <li><a href="#privacidad">Política de privacidad</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__bottom">© 2026 Tuni Academy · De alumnos para alumnos</p>
+  </div>
+</footer>
+
+<!-- CTA fija en mobile -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn--lg btn--block" href="#buscador">Reservar mi clase</a>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
