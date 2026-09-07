@@ -5,7 +5,7 @@ documento de especificación para quien la va a programar.
 
 **➡️ [docs/ESPECIFICACION.md](docs/ESPECIFICACION.md) — empezá por acá.**
 
-**🔗 Prototipo online: https://mcoletto-creator.github.io/tuni-landing-2026/**
+**🔗 Prototipo online: https://mcoletto27.github.io/tuni-landing-2026/**
 
 ---
 
@@ -18,7 +18,7 @@ comportamiento para portarlos al proyecto real.
 
 ## Verlo
 
-En vivo: **https://mcoletto-creator.github.io/tuni-landing-2026/** (se publica solo con cada push a `main`).
+En vivo: **https://mcoletto27.github.io/tuni-landing-2026/** (se publica solo con cada push a `main`).
 
 En local:
 
